@@ -10,8 +10,8 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
 // Import saga middleware
-import createSagaMiddleware, { takeEvery } from 'redux-saga';
-import { put as dispatch } from 'redux-saga/effects';
+import createSagaMiddleware from 'redux-saga';
+import { takeEvery, put as dispatch } from 'redux-saga/effects';
 
 import axios from 'axios';
 
