@@ -2,40 +2,6 @@
 
 For this weekend challenge, you'll be building a portfolio site to showcase your work. 
 
-## Setup
-
-> **PLEASE COMMENT YOUR CODE.** Do not clone this repository. Instead, download the zip, extract the contents, `git init`, `git add .`, `git commit -m "initial commit - base project"` and add your remote. Please do this before you leave for the day.
-
-1. Create a database named `portfolio`
-1. Run the following SQL using the `portfolio` database:
-
-```SQL
-CREATE TABLE "tags" (
-    "id" SERIAL PRIMARY KEY,
-    "name" varchar(255) NOT NULL
-);
-
-CREATE TABLE "projects" (
-    "id" SERIAL PRIMARY KEY,
-    "name" varchar(255) NOT NULL,
-    "description" varchar(2048),
-    "thumbnail" varchar(2048), 
-    "website" varchar(2048),
-    "github" varchar(2048),
-    "date_completed" date,
-    "tag_id" INT REFERENCES "tags"
-);
-
-INSERT INTO "tags" ("name") 
-VALUES ('React'), ('jQuery'), ('Node'), ('SQL'), ('Redux'), ('HTML');
-```
-
-1. `npm install`
-1. `npm run server`
-1. `npm run client`
-
-## Notes
-
 ### Tags
 
 We've given you some starter tags. Feel free to change or add some.
