@@ -15,7 +15,7 @@ class ProjectList extends Component {
             <div>
                 <h3>My Projects</h3>
                 {
-                    this.props.projects.map(project => <Project projectData={project}/>)
+                    this.props.projects.map(project => <Project key={project.id} projectData={project}/>)
                 }
             </div>
         );
