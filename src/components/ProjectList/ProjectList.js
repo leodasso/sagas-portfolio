@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import Project from '../Project/Project';
 import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
+import {withStyles} from '@material-ui/core/styles';
 
+const styles = {
 
+    projectList: {
+        margin: '12px 40px',
+    }
+}
 class ProjectList extends Component {
 
     componentDidMount() {
@@ -13,8 +19,10 @@ class ProjectList extends Component {
 
     render() {
 
+        const classes = this.props.classes;
+
         return (
-            <div>
+            <div className={classes.projectList}>
                 <h3>My Projects</h3>
                 <Grid container spacing={16}>
                 {
@@ -28,4 +36,7 @@ class ProjectList extends Component {
 
 const reduxMapper = reduxState => reduxState;
 
-export default connect(reduxMapper)(ProjectList);
+export default  withStyles(styles)(
+                connect(reduxMapper)(
+                    ProjectList
+));
