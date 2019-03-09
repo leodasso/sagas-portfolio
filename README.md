@@ -27,7 +27,7 @@ Place thumbnail images in the `public/images` folder.
 - [x] Client side route that displays projects that are stored in the database
 - [ ] Each project should conditionally render a name, description, thumbnail, website, date complete and a tag. Many of the fields are optional, only show properties that aren't null.
 - [ ] Include a link to GitHub that opens in a new window
-- [ ] Add your name at the top of the page
+- [x] Add your name at the top of the page
 - [ ] Use Sagas for API requests to your server
 
 ### Admin Page
