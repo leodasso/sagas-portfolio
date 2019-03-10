@@ -11,7 +11,7 @@ import logger from 'redux-logger';
 
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
-import { takeEvery, put as dispatch } from 'redux-saga/effects';
+import { takeEvery, takeLatest, put as dispatch } from 'redux-saga/effects';
 
 import axios from 'axios';
 
@@ -31,7 +31,9 @@ function* fetchTags() {
 function* rootSaga() {
 
     yield takeEvery('FETCH_PROJECTS', fetchProjects);
-    yield takeEvery('FETCH_TAGS', fetchTags);
+    // every single project instance will call this action,
+    // so we only want to take the latest to fetch tags.
+    yield takeLatest('FETCH_TAGS', fetchTags);
 }
 
 // Create sagaMiddleware

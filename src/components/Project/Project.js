@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ProjectButton from '../ProjectButton/ProjectButton';
+import { connect } from 'react-redux';
+import './Project.css';
 
 // Material UI
 import Card from '@material-ui/core/Card';
@@ -41,6 +43,11 @@ const styles = {
 
 class Project extends Component {
 
+
+    componentWillMount() {
+        this.props.dispatch({type:'FETCH_TAGS'});
+    }
+
     /** Display a button. Checks if the link is empty or null, and if it is,
      * will not display anything. If there is a link to display, it will use
      * the display name as the 'visible to the user' text
@@ -53,11 +60,20 @@ class Project extends Component {
         return <ProjectButton name={displayName} link={link} />;
     }
 
+    renderTag = () => {
+        const project = this.props.projectData;
+        const tag = this.props.tags[project.tag_id];
+        if (tag === null || tag === undefined) {
+            return '';
+        }
+        return <div className="tag">{tag.name}</div>;
+    }
+
     render() {
 
         const classes = this.props.classes;
-
         const project = this.props.projectData;
+
         return (
             <Grid item sm={12} md={6}>
                 <Card className={classes.projectCard}>
@@ -67,7 +83,10 @@ class Project extends Component {
                         title="my happy project"
                     />
                     <CardContent className={classes.info}>
-                        <Typography variant="h5">{project.name}</Typography>
+                        <div className="project-header">
+                            <Typography variant="h5">{project.name}</Typography>
+                            {this.renderTag()}
+                        </div>
                         <Divider />
 
                         <Grid container spacing={8} className={classes.links}>
@@ -84,4 +103,8 @@ class Project extends Component {
     }
 }
 
-export default withStyles(styles)(Project);
+const reduxMap = reduxState => reduxState;
+
+export default  withStyles(styles)(
+                connect(reduxMap)(
+                    Project));
