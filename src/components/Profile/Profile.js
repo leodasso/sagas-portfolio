@@ -6,9 +6,10 @@ class Profile extends Component {
     render() {
         return (
             <div className="Profile">
-                <div className="name-area">
-                    <h2>LEO</h2>
-                    <h2>DASSO</h2>
+                <div>
+                    {/* These are placed in sep elements because I want the wrapping effect */}
+                    <h2 className="headline">LEO</h2>
+                    <h2 className="headline">DASSO</h2>
                 </div>
                 <div className="info">
                     <p>Full-stack developer</p>
