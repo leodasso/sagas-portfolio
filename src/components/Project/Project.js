@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import './Project.css';
 
 // Material UI
-import Card from '@material-ui/core/Card';
+import { Card, CardMedia, CardContent, Divider} from '@material-ui/core/';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import {  Typography, Divider} from '@material-ui/core';
 
+// These styles are used for Material UI specific components.
+// I try to keep all the other styling in CSS, but for MUI sometimes
+// this is the only way to override props.
 const styles = {
 	projectCard: {
 		backgroundColor: '#edde5a',
@@ -24,13 +24,6 @@ const styles = {
 		flexGrow: 1.5,
 		margin: 0,
 	},
-	infoBody: {
-		display: 'flex',
-		justifyContent: 'space-between',
-		flexDirection: 'column',
-		height: '100%',
-		margin: 0,
-	},
 	thumbnail: {
 		width: 150,
 		minWidth: 150,
@@ -39,12 +32,6 @@ const styles = {
 		marginTop: 2,
 		justifyContent: 'space-evenly',
 
-	},
-	buttonLink: {
-		flexGrow: 2,
-	},
-	button: {
-		width: '100%',
 	},
 }
 

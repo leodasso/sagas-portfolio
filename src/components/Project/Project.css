@@ -17,3 +17,11 @@
     font-weight: 100;
     line-height: 1.5;
 }
+
+.infoBody {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+}
