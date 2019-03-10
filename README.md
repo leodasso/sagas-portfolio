@@ -1,10 +1,5 @@
-# React Redux with Sagas
-
-For this weekend challenge, you'll be building a portfolio site to showcase your work. 
 
 ### Tags
-
-We've given you some starter tags. Feel free to change or add some.
 
 For base mode, you should only include **one** tag per project. This gives you a one to many relationship. We'll cover many to many SQL queries next week. 
 
@@ -16,37 +11,29 @@ Place thumbnail images in the `public/images` folder.
 
 **Do not implement image upload for base mode.**
 
-
-## Feature List
-
-> NOTE: Start by taking inventory of the existing code. Part of the work for setting up sagas has been done for you.
-
-
 ### Project Page
 
 - [x] Client side route that displays projects that are stored in the database
 - [ ] Each project should conditionally render a name, description, thumbnail, website, date complete and a tag. Many of the fields are optional, only show properties that aren't null.
 - [ ] Include a link to GitHub that opens in a new window
 - [x] Add your name at the top of the page
-- [ ] Use Sagas for API requests to your server
+- [x] Use Sagas for API requests to your server
 
 ### Admin Page
 
-- [ ] Client side route that displays a form allowing you to add a new project to your portfolio
-- [ ] Include a drop down menu with a list of tags
-- [ ] Send data to the server and notify the user of success or failure
+- [x] Client side route that displays a form allowing you to add a new project to your portfolio
+- [x] Include a drop down menu with a list of tags
+- [x] Send data to the server and notify the user of success or failure
 - [ ] List projects by name and allow the user to delete them
-- [ ] Include a button that navigates to the project page
+- [x] Include a button that navigates to the project page
 
 ### General Tasks
 
-- [ ] Commit your code frequently! You should have at 15+ commits on a project of this size. Use branches to help break down your features.
-- [ ] Comment your code.
+- [x] Commit your code frequently! You should have at 15+ commits on a project of this size. Use branches to help break down your features.
+- [x] Comment your code.
 - [ ] Update this README to include a description of the project in your own words.
+- [ ] Fix image spacing on project component
 
-## Wireframes
-
-> NOTE: Feel free to modify the styling and layout of content on the page. 
 
 ### Project Page
 

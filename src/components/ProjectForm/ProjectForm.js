@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './ProjectForm.css';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 // material UI
 import { Button, TextField, Typography, withStyles, Divider,
@@ -87,10 +88,15 @@ class ProjectForm extends Component {
         }
 
         // submit the project here
-        this.props.dispatch({
-            type: 'UPLOAD_PROJECT',
-            payload: { ...this.state },
+        axios.put('/portfolio', this.state)
+        .then( () => {
+            this.props.dispatch({type: 'FETCH_PROJECTS'});
+            alert('Upload successful!');
         })
+        .catch( error => {
+            console.log('error with upload', error);
+            alert('There was a problem uploading this project. Please try again in a few minutes.');
+        });
 
         // clear out the input fields
         this.setState({

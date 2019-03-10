@@ -22,12 +22,6 @@ function* fetchProjects() {
     yield dispatch({type:'SET_PROJECTS', payload: response.data});
 }
 
-function* uploadProject(action) {
-
-    yield axios.put('/portfolio', action.payload);
-    yield dispatch({type: 'FETCH_PROJECTS'});
-}
-
 function* fetchTags() {
     const response = yield axios.get('/tags');
     yield dispatch({type:'SET_TAGS', payload: response.data});
@@ -37,9 +31,7 @@ function* fetchTags() {
 function* rootSaga() {
 
     yield takeEvery('FETCH_PROJECTS', fetchProjects);
-    yield takeEvery('UPLOAD_PROJECT', uploadProject);
     yield takeEvery('FETCH_TAGS', fetchTags);
-
 }
 
 // Create sagaMiddleware
