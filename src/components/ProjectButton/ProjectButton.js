@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
 // Material UI
-import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { Button , Grid} from '@material-ui/core';
-import Lightning from '../../LightningTheme';
 
 const styles = {
     links: {
@@ -26,7 +25,6 @@ class Project extends Component {
 
         return (
             <Grid item className={classes.buttonLink}>
-            <MuiThemeProvider theme={Lightning}>
                 <Button 
                     color="inherit"
                     className={classes.button}
@@ -34,9 +32,7 @@ class Project extends Component {
                     variant="text">
                     {this.props.name}
                 </Button>
-            </MuiThemeProvider>
             </Grid>
-
         );
     }
 }

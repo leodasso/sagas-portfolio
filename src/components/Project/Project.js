@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ProjectButton from '../ProjectButton/ProjectButton';
 
 // Material UI
 import Card from '@material-ui/core/Card';
@@ -6,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import { Button , Typography, Divider} from '@material-ui/core';
+import {  Typography, Divider} from '@material-ui/core';
 
 const styles = {
     projectCard: {
@@ -36,7 +37,21 @@ const styles = {
     },
 }
 
+
+
 class Project extends Component {
+
+    /** Display a button. Checks if the link is empty or null, and if it is,
+     * will not display anything. If there is a link to display, it will use
+     * the display name as the 'visible to the user' text
+     */
+    conditionalRenderButton(displayName, link) {
+        if (link === '' || link === null ) {
+            return '';
+        }
+
+        return <ProjectButton name={displayName} link={link} />;
+    }
 
     render() {
 
@@ -57,27 +72,11 @@ class Project extends Component {
 
                         <Grid container spacing={8} className={classes.links}>
 
-                            <Grid item className={classes.buttonLink}>
-                                <Button 
-                                    className={classes.button}
-                                    size="small"
-                                    variant="outlined">
-                                    Github
-                                </Button>
-                            </Grid>
-
-                            <Grid item className={classes.buttonLink}>
-                                <Button 
-                                    className={classes.button}
-                                    size="small"
-                                    variant="outlined">
-                                    Website
-                                </Button>
-                            </Grid>
+                            {this.conditionalRenderButton('GitHub', project.github)}
+                            {this.conditionalRenderButton('Website', project.website)}
                         </Grid>
 
                         <p>{project.description}</p>
-                        <p>{project.github}</p>
                     </CardContent>
                 </Card>
             </Grid>
