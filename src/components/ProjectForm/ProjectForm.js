@@ -3,7 +3,8 @@ import './ProjectForm.css';
 import { connect } from 'react-redux';
 
 // material UI
-import { Button, TextField, Typography, withStyles, Divider } from '@material-ui/core';
+import { Button, TextField, Typography, withStyles, Divider,
+         Select, MenuItem, InputLabel, FormControl, FilledInput} from '@material-ui/core';
 
 // style for the material UI stuff.
 const styles = theme => ({
@@ -23,7 +24,7 @@ const defaultState = {
     date: '',
     github: '',
     website: '',
-    tags: '',
+    tags: 0,
 }
 
 /**ProjectForm handles the creation and submission of 
@@ -37,21 +38,25 @@ class ProjectForm extends Component {
     }
 
     updateState = propName => event => {
-        this.setState({[propName]: event.target.value});
+        this.setState({ [propName]: event.target.value });
+    }
+
+    handleTagSelected = event => {
+        this.setState({ tags: event.target.value});
     }
 
     componentDidMount() {
         // get the list of tags from the server
-        this.props.dispatch({type:'FETCH_TAGS'});
+        this.props.dispatch({ type: 'FETCH_TAGS' });
     }
 
     // Returns JSX for a styled Material UI input field.
-    createInput = (placeholder, inputType, stateName) => {
+    createInput = (label, inputType, stateName) => {
         return (
-            <TextField 
+            <TextField
                 variant="filled" type={inputType}
-                className={this.props.classes.textField} 
-                placeholder={placeholder} 
+                className={this.props.classes.textField}
+                label={label}
                 onChange={this.updateState(stateName)}
                 value={this.state[stateName]}
             />
@@ -64,7 +69,7 @@ class ProjectForm extends Component {
         // Check if the user has given all the required fields.
         // If they havent, give a specific alert of what fields they need.
         let required = [];
-        if (this.state.name === '' ) {
+        if (this.state.name === '') {
             required.push('Name');
         }
         if (this.state.github === '') {
@@ -83,8 +88,8 @@ class ProjectForm extends Component {
 
         // submit the project here
         this.props.dispatch({
-            type:'UPLOAD_PROJECT',
-            payload: {...this.state},
+            type: 'UPLOAD_PROJECT',
+            payload: { ...this.state },
         })
 
         // clear out the input fields
@@ -93,28 +98,55 @@ class ProjectForm extends Component {
         });
     }
 
+    // This will make sure that the input value for the dropdown is never null.
+    // When the input value is null, React gives an error. 
+    getInputValue = () => {
+
+        const tagIndex = this.state.tags;
+        if (tagIndex === null || tagIndex === undefined || tagIndex === '') {
+            return 0;
+        }
+        return tagIndex;
+    }
+
     render() {
 
-        console.log('tags:', this.props.tags);
-
         const classes = this.props.classes;
+        const tagList = this.props.tags;
 
         return (
             <div className="project-form">
                 <Typography variant="h4">Add New Project</Typography>
-                <Divider/>
+                <Divider />
 
                 {/* Not using the form 'onSubmit' here because it doesn't intercept MaterialUI Button clicks */}
                 <form className="input-container">
-                        {this.createInput('Name', 'text', 'name')}
-                        {this.createInput('10/31/2015', 'date', 'date')}
-                        {this.createInput('Tag', 'number', 'tags')}
-                        {this.createInput('GitHub URL', 'url', 'github')}
-                        {this.createInput('Website URL (optional)', 'url', 'website')}
-                        <TextField variant="filled" className={classes.textField} multiline rows="4"
-                            fullWidth placeholder="description (optional)" value={this.state.descriptionsd}
-                            onChange={this.updateState('description')}
-                            />
+                    {this.createInput('Name', 'text', 'name')}
+                    {this.createInput('created', 'date', 'date')}
+                    <FormControl 
+                        variant="filled"
+                        className={classes.textField}>
+                        
+                        <InputLabel >Tag</InputLabel>
+                        <Select
+                            input={<FilledInput/>}
+                            variant="filled"
+                            value={this.getInputValue()}
+                            onChange={this.handleTagSelected}>
+
+                            {/* Have all the tags from the database as tag options */}
+                            {tagList.map( tagData => 
+                                <MenuItem key={tagData.id} value={tagData.id}>{tagData.name}</MenuItem>)
+                            }
+                        </Select>
+                    </FormControl>
+
+                    {this.createInput('GitHub URL', 'url', 'github')}
+                    {this.createInput('Website URL (optional)', 'url', 'website')}
+                    <TextField variant="filled" className={classes.textField} multiline rows="4"
+                        fullWidth placeholder="description (optional)" value={this.state.descriptionsd}
+                        onChange={this.updateState('description')}
+                    />
                     <Button onClick={this.onSubmit} className={classes.submitButton}>Submit</Button>
                 </form>
             </div>
@@ -124,7 +156,7 @@ class ProjectForm extends Component {
 
 const reduxMap = reduxState => reduxState;
 
-export default  connect(reduxMap)(
-                withStyles(styles)(
-                    ProjectForm)
-                );
+export default connect(reduxMap)(
+    withStyles(styles)(
+        ProjectForm)
+);
