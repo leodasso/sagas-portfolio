@@ -21,7 +21,7 @@ const styles = theme => ({
 const defaultState = {
     name: '',
     description: '',
-    date: '',
+    date: '1999-12-31',
     github: '',
     website: '',
     tags: 0,
