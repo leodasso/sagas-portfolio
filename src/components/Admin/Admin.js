@@ -41,7 +41,9 @@ class Admin extends Component {
             <Paper className={this.props.classes.mainPaper}>
 
                 <ProjectForm />
+                <br/>
                 <ProjectTable />
+                <br/>
             </Paper>
             </>
         );

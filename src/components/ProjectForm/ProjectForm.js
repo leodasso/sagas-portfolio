@@ -1,26 +1,50 @@
 import React, { Component } from 'react';
+import './ProjectForm.css';
 
 // material UI
-import { Button, withStyles } from '@material-ui/core';
+import { Button, TextField, Typography, withStyles, Divider } from '@material-ui/core';
 
 // style for the material UI stuff.
-const styles = {
-}
+const styles = theme => ({
+
+    textField: {
+        margin: theme.spacing.unit,
+        flexGrow: 2,
+    },
+    submitButton: {
+        width: '100%',
+    }
+});
 
 class ProjectForm extends Component {
 
-    render() {
+    createInput = (placeholder, inputType) => {
         return (
-            <div>
-                <h3>Add New Project</h3>
-                <form>
-                    <input placeholder="name"/>
-                    <input placeholder="date" type="date"/>
-                    <input placeholder="tag"/>
-                    <input placeholder="github url" type="url"/>
-                    <input placeholder="website url (optional)" type="url"/>
-                    <input placeholder="description (optional)"/>
-                    <Button>Submit</Button>
+            <TextField 
+                variant="filled" type={inputType}
+                className={this.props.classes.textField} 
+                placeholder={placeholder} 
+            />
+        )
+    }
+
+    render() {
+
+        const classes = this.props.classes;
+
+        return (
+            <div className="project-form">
+                <Typography variant="h4">Add New Project</Typography>
+                <Divider/>
+                <form className="input-container">
+                        {this.createInput('Name', 'text')}
+                        {this.createInput('10/31/2015', 'date')}
+                        {this.createInput('jQuery', 'text')}
+                        {this.createInput('GitHub URL', 'url')}
+                        {this.createInput('Website URL', 'url')}
+                        <TextField variant="filled" className={classes.textField} multiline rows="4"
+                            fullWidth placeholder="description (optional)" />
+                    <Button className={classes.submitButton}>Submit</Button>
                 </form>
             </div>
         );
