@@ -19,11 +19,11 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         textAlign: 'left',
-        flexGrow: 2,
+        flexGrow: 1.5,
     },
     thumbnail: {
-        minWidth: 80,
-        width: '30%',
+        width: 150,
+        minWidth: 150,
     },
     links: {
         marginTop: 2,
@@ -59,7 +59,7 @@ class Project extends Component {
 
         const project = this.props.projectData;
         return (
-            <Grid item sm={12} lg={6}>
+            <Grid item sm={12} md={6}>
                 <Card className={classes.projectCard}>
                     <CardMedia
                         className={classes.thumbnail}

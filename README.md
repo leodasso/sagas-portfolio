@@ -32,7 +32,7 @@ Place thumbnail images in the `public/images` folder.
 - [x] Commit your code frequently! You should have at 15+ commits on a project of this size. Use branches to help break down your features.
 - [x] Comment your code.
 - [ ] Update this README to include a description of the project in your own words.
-- [ ] Fix image spacing on project component
+- [x] Fix image spacing on project component
 
 
 ### Project Page
