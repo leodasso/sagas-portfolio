@@ -22,10 +22,17 @@ function* fetchProjects() {
     yield dispatch({type:'SET_PROJECTS', payload: response.data});
 }
 
+function* uploadProject(action) {
+
+    yield axios.put('/portfolio', action.payload);
+    yield dispatch({type: 'FETCH_PROJECTS'});
+}
+
 // Create the rootSaga generator function
 function* rootSaga() {
 
     yield takeEvery('FETCH_PROJECTS', fetchProjects);
+    yield takeEvery('UPLOAD_PROJECT', uploadProject);
 
 }
 

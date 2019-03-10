@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './ProjectForm.css';
+import { connect } from 'react-redux';
 
 // material UI
 import { Button, TextField, Typography, withStyles, Divider } from '@material-ui/core';
@@ -25,6 +26,10 @@ const defaultState = {
     tags: '',
 }
 
+/**ProjectForm handles the creation and submission of 
+ * new projects. It dispatches a redux action with the data for
+ * the new project.
+ */
 class ProjectForm extends Component {
 
     state = {
@@ -51,7 +56,8 @@ class ProjectForm extends Component {
     onSubmit = event => {
         event.preventDefault();
 
-        console.log('submitted');
+        // Check if the user has given all the required fields.
+        // If they havent, give a specific alert of what fields they need.
         let required = [];
         if (this.state.name === '' ) {
             required.push('Name');
@@ -59,12 +65,22 @@ class ProjectForm extends Component {
         if (this.state.github === '') {
             required.push('GitHub');
         }
+        if (this.state.date === '') {
+            required.push('date');
+        }
+        if (this.state.tags === '') {
+            required.push('tags');
+        }
         if (required.length > 0) {
             alert('You need to fill in ' + required.join(', ') + ' to continue!');
             return;
         }
 
         // submit the project here
+        this.props.dispatch({
+            type:'UPLOAD_PROJECT',
+            payload: {...this.state},
+        })
 
         // clear out the input fields
         this.setState({
@@ -85,7 +101,7 @@ class ProjectForm extends Component {
                 <form className="input-container">
                         {this.createInput('Name', 'text', 'name')}
                         {this.createInput('10/31/2015', 'date', 'date')}
-                        {this.createInput('jQuery', 'text', 'tags')}
+                        {this.createInput('Tag', 'number', 'tags')}
                         {this.createInput('GitHub URL', 'url', 'github')}
                         {this.createInput('Website URL (optional)', 'url', 'website')}
                         <TextField variant="filled" className={classes.textField} multiline rows="4"
@@ -99,4 +115,7 @@ class ProjectForm extends Component {
     }
 }
 
-export default withStyles(styles)(ProjectForm);
+export default  connect()(
+                withStyles(styles)(
+                    ProjectForm)
+                );
