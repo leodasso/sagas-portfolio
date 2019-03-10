@@ -40,6 +40,11 @@ class ProjectForm extends Component {
         this.setState({[propName]: event.target.value});
     }
 
+    componentDidMount() {
+        // get the list of tags from the server
+        this.props.dispatch({type:'FETCH_TAGS'});
+    }
+
     // Returns JSX for a styled Material UI input field.
     createInput = (placeholder, inputType, stateName) => {
         return (
@@ -90,6 +95,8 @@ class ProjectForm extends Component {
 
     render() {
 
+        console.log('tags:', this.props.tags);
+
         const classes = this.props.classes;
 
         return (
@@ -115,7 +122,9 @@ class ProjectForm extends Component {
     }
 }
 
-export default  connect()(
+const reduxMap = reduxState => reduxState;
+
+export default  connect(reduxMap)(
                 withStyles(styles)(
                     ProjectForm)
                 );
