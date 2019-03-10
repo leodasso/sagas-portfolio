@@ -10,7 +10,7 @@ import { Button , Typography, Divider} from '@material-ui/core';
 
 const styles = {
     projectCard: {
-        backgroundColor: 'yellow',
+        backgroundColor: '#edde5a',
         display: 'flex',
         minHeight: 200
     },

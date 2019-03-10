@@ -23,7 +23,6 @@ class ProjectList extends Component {
 
         return (
             <div className={classes.projectList}>
-                <h3>My Projects</h3>
                 <Grid container spacing={32}>
                 {
                     this.props.projects.map(project => <Project key={project.id} projectData={project}/>)

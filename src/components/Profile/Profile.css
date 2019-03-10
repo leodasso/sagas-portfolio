@@ -1,0 +1,24 @@
+.Profile {
+    padding: 30px;
+    min-height: 200px;
+    color: #7b659e;
+
+    /* Flex display */
+    display: flex;
+    justify-content: space-between;
+}
+
+.name-area h2 {
+    
+    text-align: left;
+    line-height: .7;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 6rem;
+    margin: 6px;
+}
+
+.info {
+    text-align: right;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
