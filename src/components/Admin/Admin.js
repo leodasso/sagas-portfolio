@@ -3,6 +3,8 @@ import './Admin.css';
 
 // material UI
 import { Button, Paper, withStyles } from '@material-ui/core';
+import ProjectForm from '../ProjectForm/ProjectForm';
+import ProjectTable from '../ProjectTable/ProjectTable';
 
 // style for the material UI stuff.
 const styles = {
@@ -12,6 +14,7 @@ const styles = {
         margin: '44px',
         minHeight: '300px',
         padding: '24px',
+        paddingBottom: '34px',
     }
 
 }
@@ -37,16 +40,8 @@ class Admin extends Component {
             </div>
             <Paper className={this.props.classes.mainPaper}>
 
-                Add New Project
-                <form>
-                    <input placeholder="name"/>
-                    <input placeholder="date" type="date"/>
-                    <input placeholder="tag"/>
-                    <input placeholder="github url" type="url"/>
-                    <input placeholder="website url (optional)" type="url"/>
-                    <input placeholder="description (optional)"/>
-
-                </form>
+                <ProjectForm />
+                <ProjectTable />
             </Paper>
             </>
         );
