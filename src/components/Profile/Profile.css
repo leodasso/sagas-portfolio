@@ -6,6 +6,7 @@
     /* Flex display */
     display: flex;
     justify-content: space-between;
+    margin: 2px 24px;
 }
 
 .info {
