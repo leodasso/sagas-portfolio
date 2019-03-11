@@ -13,6 +13,7 @@ const styles = {
         flexGrow: 2,
     },
     button: {
+        color: 'rgba(0, 0, 0, .75)',
         width: '100%',
     },
 }
@@ -29,7 +30,7 @@ class Project extends Component {
                     color="inherit"
                     className={classes.button}
                     size="small"
-                    variant="text">
+                    variant="outlined">
                     {this.props.name}
                 </Button>
             </Grid>

@@ -15,14 +15,14 @@ const styles = {
 	projectCard: {
 		backgroundColor: '#edde5a',
 		display: 'flex',
-		minHeight: 200
+		minHeight: 300,
 	},
 	info: {
 		display: 'flex',
 		flexDirection: 'column',
 		textAlign: 'left',
 		flexGrow: 1.5,
-		margin: 0,
+		margin: '2px 16px',
 	},
 	thumbnail: {
 		width: 150,
