@@ -35,8 +35,6 @@ const styles = {
 	},
 }
 
-
-
 class Project extends Component {
 
 
@@ -52,15 +50,27 @@ class Project extends Component {
 		if (link === '' || link === null ) {
 			return '';
 		}
-
 		return <ProjectButton name={displayName} link={link} />;
+	}
+
+	// Conditionally renders the date. Uses a nice date formatter for if the 
+	// input date isnt null.
+	renderDate(dateString) {
+		if (dateString === null || dateString === '') {
+			return '';
+		}
+		let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+		let newDate  = new Date(dateString);
+		let finalString = newDate.toLocaleDateString('en-US', options);
+
+		return <p className="date">{finalString}</p>
 	}
 
 	renderTag = () => {
 		const project = this.props.projectData;
 		const tag = this.props.tags[project.tag_id];
 		if (tag === null || tag === undefined) {
-			return '';
+			return <div></div>;
 		}
 		return <div className="tag">{tag.name}</div>;
 	}
@@ -69,27 +79,34 @@ class Project extends Component {
 
 		const classes = this.props.classes;
 		const project = this.props.projectData;
+		let thumbnailPath = "images/default_thumbnail.png";
+		if (project.thumbnail != null) {
+			thumbnailPath = "images/" + project.thumbnail;
+		}
 
 		return (
-			<Grid item sm={12} md={6}>
+			<Grid item sm={12} lg={6}>
 				<Card className={classes.projectCard}>
 					<CardMedia
 						className={classes.thumbnail}
-						image="images/default_thumbnail.png"
+						image={thumbnailPath}
 						title="my happy project"
 					/>
 					<CardContent className={classes.info}>
+						{this.renderDate(project.date_completed)}
 						<div className="project-header">
 							<div className="title">{project.name}</div>
+							
 							{this.renderTag()}
 						</div>
 						<Divider />
-						<div className={classes.infoBody}>
-							<p>{project.description}</p>
+						<div className="info-body">
 							<Grid container spacing={8} className={classes.links}>
 								{this.conditionalRenderButton('GitHub', project.github)}
 								{this.conditionalRenderButton('Website', project.website)}
 							</Grid>
+							<p className="description">{project.description}</p>
+							
 						</div>
 					</CardContent>
 				</Card>
