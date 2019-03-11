@@ -20,6 +20,11 @@ const styles = {
 
 class Project extends Component {
 
+    handleClick = () => {
+
+        window.open(this.props.link, '_blank');
+    }
+
     render() {
 
         const classes = this.props.classes;
@@ -27,6 +32,7 @@ class Project extends Component {
         return (
             <Grid item className={classes.buttonLink}>
                 <Button 
+                    onClick={this.handleClick}
                     color="inherit"
                     className={classes.button}
                     size="small"

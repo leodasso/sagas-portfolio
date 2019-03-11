@@ -66,6 +66,9 @@ class Project extends Component {
 		return <p className="date">{finalString}</p>
 	}
 
+	// Renders the 'html', 'css', etc tag that tells what the
+	// project is associated with. If there's no tag selected,
+	// just returns an empty div.
 	renderTag = () => {
 		const project = this.props.projectData;
 		const tag = this.props.tags[project.tag_id];
